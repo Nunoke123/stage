@@ -127,7 +127,7 @@ body {
     border-radius: 2px;
 }
 
-/* MOBILE MENU (hidden on desktop) */
+/* MOBILE MENU */
 
 #mobileMenu {
     display: none;
@@ -206,26 +206,113 @@ body {
 
 /* CONTACT */
 
-.contactgegevens {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px 24px;
-    padding: 8px 0;
-    width: 100%;
-}
-
-.contactgegevens span:nth-child(odd) {
-    font-weight: bold;
-    text-align: right;
-}
-
-.contactgegevens span:nth-child(even) {
-    text-align: left;
-}
-
 .contactgegevens a {
     color: #444;
 }
+
+.contactgegeven {
+    display: flex;
+    gap: 20px;
+}
+
+.btwnr {
+    gap: 10px;
+}
+
+/* GALLERY */
+
+.gallery-page {
+    max-width: 1100px;
+}
+
+.gallery-page h2 {
+    margin-top: 32px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    width: 100%;
+}
+
+.gallery-page h2:first-child {
+    margin-top: 0;
+}
+
+.gallery-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.gallery-group img {
+    width: 100%;
+    max-width: 40svw;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    display: block;
+}
+
+.gallery-group img:hover {
+    opacity: 0.85;
+}
+
+/* LIGHTBOX */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox.open {
+    display: flex;
+}
+
+#lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+#lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 24px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+}
+
+#lightbox-prev,
+#lightbox-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 16px;
+    user-select: none;
+}
+
+#lightbox-prev { left: 8px; }
+#lightbox-next { right: 8px; }
 
 /* FOOTER */
 
@@ -239,7 +326,7 @@ footer {
     position: fixed;
     bottom: 0;
     padding: 8px 16px;
-    opacity: 0.95;
+    opacity: 90%;
     box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
     font-size: 0.85rem;
 }
@@ -293,19 +380,8 @@ footer {
         font-size: 1.5rem;
     }
 
-    .contactgegevens {
-        grid-template-columns: 1fr;
-        gap: 4px 0;
-    }
-
-    .contactgegevens span:nth-child(odd) {
-        text-align: left;
-        margin-top: 10px;
-    }
-
-    .contactgegevens span:nth-child(even) {
-        text-align: left;
-        padding-left: 4px;
+    .gallery-group {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     footer {

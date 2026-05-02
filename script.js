@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     // Fill footer
     const footer = document.getElementById("footer");
     if (footer) {
@@ -30,4 +31,47 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+    // Lightbox for gallery pages
+    const galleryPage = document.querySelector(".gallery-page");
+    if (galleryPage) {
+        const lightbox = document.createElement("div");
+        lightbox.id = "lightbox";
+        lightbox.innerHTML = `
+            <button id="lightbox-close">&#x2715;</button>
+            <button id="lightbox-prev">&#x2039;</button>
+            <img id="lightbox-img" src="" alt="">
+            <button id="lightbox-next">&#x203A;</button>
+        `;
+        document.body.appendChild(lightbox);
+
+        const lb      = document.getElementById("lightbox");
+        const lbImg   = document.getElementById("lightbox-img");
+        const lbClose = document.getElementById("lightbox-close");
+        const lbPrev  = document.getElementById("lightbox-prev");
+        const lbNext  = document.getElementById("lightbox-next");
+
+        const imgs = Array.from(galleryPage.querySelectorAll("img"));
+        let current = 0;
+
+        function openAt(index) {
+            current = index;
+            lbImg.src = imgs[current].src;
+            lb.classList.add("open");
+        }
+
+        imgs.forEach((img, i) => img.addEventListener("click", () => openAt(i)));
+        lbClose.addEventListener("click", () => lb.classList.remove("open"));
+        lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
+        lbPrev.addEventListener("click", () => openAt((current - 1 + imgs.length) % imgs.length));
+        lbNext.addEventListener("click", () => openAt((current + 1) % imgs.length));
+
+        document.addEventListener("keydown", (e) => {
+            if (!lb.classList.contains("open")) return;
+            if (e.key === "ArrowLeft")  lbPrev.click();
+            if (e.key === "ArrowRight") lbNext.click();
+            if (e.key === "Escape")     lb.classList.remove("open");
+        });
+    }
+
 });
