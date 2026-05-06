@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - BLANTO</title>
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/logo.webp" type="image/x-icon">
 </head>
 <body>
     <main>
         <nav id="navbar">
-            <img src="../images/logo.png" alt="Logo">
+            <img src="../images/logo.webp" alt="Logo">
             <div class="navButtons">
                 <div class="navBtn"><a href="../index.html">Home</a></div>
                 <div class="navBtn"><a href="about.html">Over ons</a></div>
@@ -58,6 +58,26 @@
                     <div class="contactgegeven"><span>Adres:</span>      <a href="https://www.google.com/maps/place/Mechelbaan+64,+2861+Sint-Katelijne-Waver/@51.0560242,4.5611745,988m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47c3e373b0f79d9f:0xc47afb7d5dd05a42!8m2!3d51.0560242!4d4.5637548!16s%2Fg%2F11crx65l1h?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Mechelbaan 64 - 2861 OLV-Waver</a></div>
                     <div class="contactgegeven"><span>Email:</span>      <a href="mailto:info@blanto.be">info@blanto.be</a></div>
                     <div class="contactgegeven btwnr"><span>BTWnr:</span>     <span>BE 0694 797 934</span></div>
+                </div>
+                <br>
+                <div class="contactFormulier">
+                    <form action="https://formspree.io/f/xlgznapo" method="post">
+                        <label for="firstname">Voornaam: </label>
+                        <input type="text" name="name" id="firstname" placeholder="Voornaam" required> <br>
+                        <label for="lastname">Familienaam: </label>
+                        <input type="text" name="last_name" id="lastname" placeholder="Familienaam" required> <br>
+                        <label for="email">Email: </label>
+                        <input type="email" name="email" id="email" placeholder="voorbeeld@gmail.com" required> <br>
+                        <label for="tel">Telefoon: </label>
+                        <input type="tel" name="tel" id="tel" placeholder="telefoonnummer" required> <br>
+                        <label for="adress">Adres: </label>
+                        <input type="text" name="adress" id="adress" placeholder="adres" required> <br>
+                        <label for="place">Gemeente: </label>
+                        <input type="text" name="place" id="place" placeholder="plaats" required> <br>
+                        <label for="message">Gelieve aan te geven welk type werken u wenst te bespreken: </label> <br>
+                        <textarea name="" id="message" placeholder="..." required></textarea> <br>
+                        <button type="submit">Versturen</button>
+                    </form>
                 </div>
             </div>
         </section>
