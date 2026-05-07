@@ -42,35 +42,58 @@ document.addEventListener("DOMContentLoaded", function () {
             <button id="lightbox-prev">&#x2039;</button>
             <img id="lightbox-img" src="" alt="">
             <button id="lightbox-next">&#x203A;</button>
+            <button id="lightbox-rotate" title="Draaien">&#x21BB;</button>
         `;
         document.body.appendChild(lightbox);
 
-        const lb      = document.getElementById("lightbox");
-        const lbImg   = document.getElementById("lightbox-img");
-        const lbClose = document.getElementById("lightbox-close");
-        const lbPrev  = document.getElementById("lightbox-prev");
-        const lbNext  = document.getElementById("lightbox-next");
+        const lb         = document.getElementById("lightbox");
+        const lbImg      = document.getElementById("lightbox-img");
+        const lbClose    = document.getElementById("lightbox-close");
+        const lbPrev     = document.getElementById("lightbox-prev");
+        const lbNext     = document.getElementById("lightbox-next");
+        const lbRotate   = document.getElementById("lightbox-rotate");
 
         const imgs = Array.from(galleryPage.querySelectorAll("img"));
         let current = 0;
 
+        // Store per-image rotation (in degrees) so it persists while browsing
+        const rotations = new Array(imgs.length).fill(0);
+
+        function applyRotation() {
+            const deg = rotations[current];
+            lbImg.style.transform = `rotate(${deg}deg)`;
+            // When portrait (90/270°), scale down so it fits the viewport
+            const isPortrait = deg % 180 !== 0;
+            lbImg.style.maxWidth  = isPortrait ? "90vh" : "90vw";
+            lbImg.style.maxHeight = isPortrait ? "90vw" : "90vh";
+        }
+
         function openAt(index) {
             current = index;
             lbImg.src = imgs[current].src;
+            applyRotation();
             lb.classList.add("open");
         }
 
         imgs.forEach((img, i) => img.addEventListener("click", () => openAt(i)));
+
         lbClose.addEventListener("click", () => lb.classList.remove("open"));
         lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
+
         lbPrev.addEventListener("click", () => openAt((current - 1 + imgs.length) % imgs.length));
         lbNext.addEventListener("click", () => openAt((current + 1) % imgs.length));
+
+        lbRotate.addEventListener("click", () => {
+            rotations[current] = (rotations[current] + 90) % 360;
+            applyRotation();
+        });
 
         document.addEventListener("keydown", (e) => {
             if (!lb.classList.contains("open")) return;
             if (e.key === "ArrowLeft")  lbPrev.click();
             if (e.key === "ArrowRight") lbNext.click();
             if (e.key === "Escape")     lb.classList.remove("open");
+            if (e.key === "r")          lbRotate.click();
         });
     }
 

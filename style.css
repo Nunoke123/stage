@@ -35,7 +35,7 @@ main {
 
 #navbar img {
     padding-left: 50px;
-    width: 17%;
+    width: 17vw;
     align-self: center;
 }
 
@@ -201,6 +201,10 @@ main {
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     max-width: 600px;
     width: 100%;
+
+    position: fixed;
+    bottom: 15svh;
+    left: 3svw;
 }
 
 /* ── MAIN CONTENT ────────────────────────────────────── */
@@ -391,6 +395,33 @@ main {
 #lightbox-prev { left: 8px; }
 #lightbox-next { right: 8px; }
 
+#lightbox-rotate {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+#lightbox-rotate:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+#lightbox img {
+    transition: transform 0.3s ease;
+}
+
 /* ── FOOTER ──────────────────────────────────────────── */
 
 footer {
@@ -470,6 +501,7 @@ footer {
     .slogan {
         font-size: 1.3rem;
         padding: 20px 24px;
+        position: unset;
     }
 
     /* Content pages: tight top padding, column layout */
